@@ -35,7 +35,7 @@ class Controller {
     if (queryLink) {
       return response.json({
         original_url: queryLink.link,
-        short_url: queryLink._id.toString()
+        short_url: queryLink.short
       })
     }
 
@@ -47,7 +47,7 @@ class Controller {
     .then( link => {
       return response.json({
         original_url: link.link,
-        short_url: link._id.toString()
+        short_url: link.short
       })
     })
     .catch( _ => {
@@ -60,7 +60,7 @@ class Controller {
   async findLink(request: Request, response: Response) {
     const { id } = request.params;
 
-    const queryLink = await Link.findById(id);
+    const queryLink = await Link.findOne({ short: id });
 
     if (queryLink) {
       return response.redirect(302, queryLink.link)

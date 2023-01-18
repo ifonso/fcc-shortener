@@ -2,6 +2,7 @@ import { Document, Model } from "mongoose";
 
 export interface ILink {
   link: string;
+  short: number
 }
 
 export interface ILinkDocument extends ILink, Document {};

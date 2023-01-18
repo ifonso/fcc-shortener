@@ -7,12 +7,25 @@ const linkSchema: Schema<ILinkDocument> = new Schema(
       type: String,
       require: true,
       readonly: true
+    },
+    short: {
+      type: Number,
+      require: true,
+      default: 1000
     }
   },
   {
     collection: "Links"
   }
 )
+
+linkSchema.pre("save", async function(next) {
+  const doc = this;
+  const count = await Link.countDocuments();
+
+  doc.short = count;
+  next();
+})
 
 const Link = model<ILinkDocument, ILinkModel>("links", linkSchema);
 
