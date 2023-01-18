@@ -16,8 +16,4 @@ const linkSchema: Schema<ILinkDocument> = new Schema(
 
 const Link = model<ILinkDocument, ILinkModel>("links", linkSchema);
 
-linkSchema.statics.buildLink = (args: ILink) => {
-  return new Link(args);
-}
-
 export default Link;

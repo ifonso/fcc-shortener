@@ -6,6 +6,4 @@ export interface ILink {
 
 export interface ILinkDocument extends ILink, Document {};
 
-export interface ILinkModel extends ILink, Model<ILinkDocument> {
-  buildLink(args: ILink): ILinkDocument;
-};
+export interface ILinkModel extends ILink, Model<ILinkDocument> {};
